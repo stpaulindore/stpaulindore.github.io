@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10182d">
+  <meta name="description" content="Paulite Pulse — your weekly dose of school stories, announcements, achievements, and campus moments.">
+  <title>Paulite Pulse — The Week at School</title>
+  <style>
+    :root {
+      --navy: #10182d;
+      --navy-2: #192541;
+      --red: #e63b4b;
+      --red-dark: #c9273a;
+      --paper: #f7f5f0;
+      --white: #fff;
+      --ink: #182033;
+      --muted: #697184;
+      --line: #e5e5e8;
+      --radius: 22px;
+      --shadow: 0 18px 55px rgba(16, 24, 45, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink); background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    .wrap { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+    .topline { background: var(--red); color: white; font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .topline .wrap { display: flex; justify-content: space-between; gap: 16px; padding-block: 9px; }
+    header { background: rgba(255,255,255,.92); border-bottom: 1px solid rgba(16,24,45,.08); position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px); }
+    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 82px; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 950; letter-spacing: -.055em; font-size: 1.35rem; }
+    .brand-mark { width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; background: var(--red); color: white; font-size: 1.2rem; font-weight: 950; letter-spacing: -.06em; box-shadow: 0 8px 20px rgba(230,59,75,.25); }
+    .brand small { display: block; font-size: .63rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); font-weight: 800; margin-top: -3px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: .9rem; font-weight: 750; }
+    .nav-links a:hover { color: var(--red); }
+    .nav-cta, .btn { display: inline-flex; justify-content: center; align-items: center; gap: 10px; border: 0; border-radius: 999px; padding: 13px 20px; font-weight: 850; transition: transform .2s, background .2s; cursor: pointer; }
+    .nav-cta, .btn-red { background: var(--red); color: white; }
+    .nav-cta:hover, .btn:hover { transform: translateY(-2px); }
+    .btn-red:hover { background: var(--red-dark); }
+    .btn-light { background: white; color: var(--navy); }
+    .btn-outline { border: 1px solid rgba(255,255,255,.28); color: white; background: transparent; }
+    .hero { background: var(--navy); color: white; position: relative; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; width: 560px; height: 560px; border: 1px solid rgba(255,255,255,.09); border-radius: 50%; right: -100px; top: -230px; box-shadow: 0 0 0 60px rgba(255,255,255,.025), 0 0 0 120px rgba(255,255,255,.02); }
+    .hero-inner { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 50px; padding-block: 88px 94px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; font-weight: 900; color: var(--red); }
+    .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 5px rgba(230,59,75,.15); }
+    h1 { font-size: clamp(3.1rem, 6.5vw, 5.6rem); line-height: .98; letter-spacing: -.075em; margin: 23px 0 22px; max-width: 680px; }
+    h1 span { color: #ff6470; }
+    .hero-copy { color: #c3c9d8; font-size: 1.08rem; max-width: 520px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .hero-note { display: flex; align-items: center; gap: 10px; margin-top: 32px; color: #9fa9bd; font-size: .82rem; }
+    .hero-note strong { color: white; }
+    .hero-art { position: relative; min-height: 360px; display: grid; place-items: center; }
+    .pulse-card { width: min(100%, 430px); aspect-ratio: 1.03; background: linear-gradient(145deg, #263454, #17213a); border: 1px solid rgba(255,255,255,.12); border-radius: 30px; padding: 30px; position: relative; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,.25); transform: rotate(2deg); }
+    .pulse-card::after { content: "P"; position: absolute; font-weight: 1000; font-size: 24rem; line-height: 1; letter-spacing: -.13em; color: rgba(255,255,255,.045); right: -30px; bottom: -115px; }
+    .card-top { display: flex; align-items: center; justify-content: space-between; color: #d7dceb; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .live-pill { display: inline-flex; align-items: center; gap: 7px; background: rgba(230,59,75,.18); color: #ff8490; padding: 7px 10px; border-radius: 999px; letter-spacing: .08em; }
+    .live-pill::before { content: ""; width: 6px; height: 6px; background: currentColor; border-radius: 50%; }
+    .art-title { position: relative; z-index: 1; margin-top: 72px; font-size: clamp(2.5rem, 5vw, 4.4rem); font-weight: 1000; line-height: .88; letter-spacing: -.08em; }
+    .art-title span { color: #ff6470; }
+    .wave { position: absolute; left: 28px; right: 28px; bottom: 28px; height: 50px; display: flex; align-items: center; gap: 6px; z-index: 2; }
+    .wave i { display: block; width: 5px; border-radius: 9px; background: #ff6470; height: 20%; opacity: .9; }
+    .wave i:nth-child(3n) { height: 80%; } .wave i:nth-child(4n) { height: 50%; } .wave i:nth-child(5n) { height: 100%; } .wave i:nth-child(7n) { height: 35%; }
+    .float-label { position: absolute; z-index: 3; right: -10px; bottom: 38px; background: white; color: var(--navy); border-radius: 17px; padding: 15px 19px; box-shadow: var(--shadow); transform: rotate(-4deg); }
+    .float-label small { display: block; color: var(--muted); text-transform: uppercase; font-size: .64rem; letter-spacing: .12em; font-weight: 900; }
+    .float-label strong { font-size: 1.15rem; }
+    .ticker { background: #fff; border-bottom: 1px solid var(--line); }
+    .ticker-inner { display: flex; align-items: center; gap: 16px; padding-block: 17px; font-size: .85rem; }
+    .ticker-label { color: var(--red); font-weight: 950; text-transform: uppercase; letter-spacing: .1em; white-space: nowrap; }
+    .ticker-text { color: var(--muted); }
+    section { padding-block: 84px; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 30px; }
+    .section-head h2 { font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.03; letter-spacing: -.065em; margin: 12px 0 0; }
+    .section-head p { color: var(--muted); max-width: 410px; margin: 0; }
+    .featured { background: white; }
+    .video-layout { display: grid; grid-template-columns: 1.5fr .8fr; gap: 34px; align-items: stretch; }
+    .video-shell { background: #080d19; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .video-shell iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
+    .video-info { padding: 26px 28px 28px; }
+    .video-info .meta { color: var(--red); font-size: .72rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+    .video-info h3 { margin: 8px 0; font-size: 1.65rem; letter-spacing: -.04em; line-height: 1.2; }
+    .video-info p { margin: 0; color: var(--muted); }
+    .side-panel { border-radius: var(--radius); background: var(--paper); padding: 30px; display: flex; flex-direction: column; justify-content: space-between; }
+    .side-panel h3 { font-size: 1.75rem; line-height: 1.1; letter-spacing: -.05em; margin: 13px 0; }
+    .side-panel p { color: var(--muted); }
+    .check-list { padding: 0; margin: 22px 0 28px; list-style: none; }
+    .check-list li { display: flex; gap: 12px; align-items: start; border-top: 1px solid var(--line); padding: 13px 0; font-weight: 750; font-size: .9rem; }
+    .check-list li::before { content: "↗"; display: grid; place-items: center; flex: 0 0 25px; height: 25px; border-radius: 50%; background: #ffe3e5; color: var(--red); font-weight: 950; }
+    .episodes { background: var(--paper); }
+    .text-link { font-weight: 850; color: var(--red); white-space: nowrap; }
+    .episode-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .episode-card { background: white; border: 1px solid #ececf0; border-radius: 20px; overflow: hidden; transition: transform .2s, box-shadow .2s; }
+    .episode-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .episode-cover { aspect-ratio: 16 / 9; background: var(--navy-2); color: white; position: relative; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
+    .episode-cover::after { content: ""; position: absolute; width: 180px; height: 180px; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; right: -45px; bottom: -80px; box-shadow: 0 0 0 25px rgba(255,255,255,.035), 0 0 0 50px rgba(255,255,255,.025); }
+    .episode-cover.red { background: #a92336; }
+    .episode-cover.cream { background: #e8e0d2; color: var(--navy); }
+    .episode-cover small { position: relative; z-index: 1; text-transform: uppercase; font-size: .67rem; font-weight: 900; letter-spacing: .13em; opacity: .8; }
+    .cover-word { position: relative; z-index: 1; font-weight: 1000; font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: .9; letter-spacing: -.08em; }
+    .play-icon { position: absolute; right: 20px; top: 20px; z-index: 2; display: grid; place-items: center; width: 39px; height: 39px; border-radius: 50%; background: white; color: var(--red); }
+    .episode-body { padding: 21px; }
+    .episode-body .week { color: var(--red); text-transform: uppercase; letter-spacing: .1em; font-weight: 900; font-size: .68rem; }
+    .episode-body h3 { font-size: 1.15rem; line-height: 1.25; letter-spacing: -.03em; margin: 8px 0; }
+    .episode-body p { color: var(--muted); font-size: .88rem; margin: 0 0 17px; }
+    .episode-body a { font-weight: 850; font-size: .85rem; }
+    .updates { background: white; }
+    .updates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .update-card { display: flex; gap: 20px; align-items: start; border: 1px solid var(--line); border-radius: 18px; padding: 24px; }
+    .update-icon { display: grid; place-items: center; flex: 0 0 48px; height: 48px; background: #ffe5e7; color: var(--red); border-radius: 14px; font-size: 1.2rem; font-weight: 900; }
+    .update-card h3 { margin: 0 0 6px; font-size: 1.08rem; letter-spacing: -.025em; }
+    .update-card p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .community { padding-block: 0 84px; background: white; }
+    .community-panel { background: var(--red); color: white; border-radius: 28px; padding: 46px 52px; display: flex; align-items: center; justify-content: space-between; gap: 28px; position: relative; overflow: hidden; }
+    .community-panel::after { content: "P"; position: absolute; right: 220px; top: -85px; font-size: 19rem; line-height: 1; font-weight: 1000; color: rgba(255,255,255,.08); pointer-events: none; }
+    .community-panel > * { position: relative; z-index: 1; }
+    .community-panel h2 { font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1; letter-spacing: -.065em; margin: 0 0 12px; }
+    .community-panel p { margin: 0; color: rgba(255,255,255,.82); max-width: 500px; }
+    footer { background: var(--navy); color: white; padding-block: 36px; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+    .footer-copy { color: #9fa9bd; font-size: .82rem; }
+    .footer-links { display: flex; gap: 22px; color: #d4d9e4; font-size: .85rem; font-weight: 750; }
+    .footer-links a:hover { color: #ff6470; }
+    .menu-toggle { display: none; border: 0; background: transparent; font-size: 1.5rem; cursor: pointer; color: var(--navy); }
+    @media (max-width: 850px) {
+      .nav-links { gap: 16px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero-inner { grid-template-columns: 1fr; padding-block: 65px 75px; gap: 28px; }
+      .hero-art { min-height: 310px; }
+      .pulse-card { max-width: 430px; }
+      .video-layout { grid-template-columns: 1fr; }
+      .episode-grid { grid-template-columns: repeat(2, 1fr); }
+      .episode-card:last-child { display: none; }
+    }
+    @media (max-width: 600px) {
+      .wrap { width: min(100% - 28px, 1160px); }
+      .topline .wrap { font-size: .64rem; letter-spacing: .06em; }
+      .nav { min-height: 70px; }
+      .brand { font-size: 1.18rem; }
+      .brand-mark { width: 38px; height: 38px; }
+      .nav-cta { padding: 10px 13px; font-size: .82rem; }
+      .hero-inner { padding-block: 54px 60px; }
+      h1 { font-size: clamp(3rem, 15vw, 4.4rem); }
+      .hero-copy { font-size: 1rem; }
+      .hero-art { min-height: 280px; }
+      .pulse-card { padding: 22px; border-radius: 23px; }
+      .art-title { margin-top: 58px; font-size: 3.3rem; }
+      .float-label { right: -3px; bottom: 19px; padding: 11px 14px; }
+      section { padding-block: 60px; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 15px; }
+      .video-info { padding: 22px; }
+      .side-panel { padding: 24px; }
+      .episode-grid { grid-template-columns: 1fr; }
+      .episode-card:last-child { display: block; }
+      .episode-cover { aspect-ratio: 16 / 8; }
+      .updates-grid { grid-template-columns: 1fr; }
+      .update-card { padding: 20px; gap: 15px; }
+      .community { padding-bottom: 60px; }
+      .community-panel { padding: 31px 25px; display: block; }
+      .community-panel .btn { margin-top: 23px; }
+      .community-panel::after { right: -10px; top: 0; }
+      .footer-inner { flex-direction: column; align-items: start; }
+      .footer-links { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline">
+    <div class="wrap"><span>Your school. Your stories.</span><span>A weekly window into campus life</span></div>
+  </div>
+  <header>
+    <nav class="wrap nav" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Paulite Pulse home">
+        <span class="brand-mark">P.</span>
+        <span>paulite pulse<small>the school bulletin</small></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#latest">Latest bulletin</a>
+        <a href="#episodes">Episodes</a>
+        <a href="#updates">School updates</a>
+        <a class="nav-cta" href="#latest">▶ Watch now</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-inner">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> The school week, connected</div>
+          <h1>The week at school, <span>in focus.</span></h1>
+          <p class="hero-copy">Your weekly dose of campus stories, announcements, achievements, and moments that bring our school community together.</p>
+          <div class="hero-actions">
+            <a class="btn btn-red" href="#latest">Watch the bulletin <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-outline" href="#episodes">Explore episodes</a>
+          </div>
+          <div class="hero-note"><strong>PAULITE PULSE</strong><span>·</span><span>Every week, one shared story.</span></div>
+        </div>
+        <div class="hero-art" aria-label="Paulite Pulse graphic">
+          <div class="pulse-card">
+            <div class="card-top"><span>Campus broadcast</span><span class="live-pill">Weekly edition</span></div>
+            <div class="art-title">PAULITE<br><span>PULSE.</span></div>
+            <div class="wave" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+          </div>
+          <div class="float-label"><small>One school</small><strong>Many stories.</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker">
+      <div class="wrap ticker-inner"><span class="ticker-label">The Pulse</span><span class="ticker-text">News from around campus · Celebrating student life · Keeping the school community in sync</span></div>
+    </div>
+
+    <section class="featured" id="latest">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow"><span class="dot"></span> Featured episode</div><h2>This week’s bulletin.</h2></div>
+          <p>Press play for the latest Paulite Pulse video, shared on YouTube.</p>
+        </div>
+        <div class="video-layout">
+          <div class="video-shell">
+            <iframe
+              src="https://www.youtube.com/embed/E9fDREHTagw?si=4swjLLK0_QcLLOaS"
+              title="Paulite Pulse — weekly school bulletin"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+            <div class="video-info">
+              <div class="meta">Paulite Pulse · Featured video</div>
+              <h3>Catch up with the school week</h3>
+              <p>Watch the bulletin here, or open the video on YouTube to view it on the original channel.</p>
+            </div>
+          </div>
+          <aside class="side-panel">
+            <div>
+              <div class="eyebrow"><span class="dot"></span> Stay in the loop</div>
+              <h3>Everything happening. One place.</h3>
+              <p>Paulite Pulse brings together the updates, events, and highlights that make each school week memorable.</p>
+              <ul class="check-list">
+                <li>Weekly video bulletin</li>
+                <li>Campus news and announcements</li>
+                <li>Student achievements and events</li>
+              </ul>
+            </div>
+            <a class="btn btn-red" href="https://www.youtube.com/watch?v=E9fDREHTagw" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="episodes" id="episodes">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow"><span class="dot"></span> From the archive</div><h2>More from the Pulse.</h2></div>
+          <p>Keep every weekly bulletin easy to find. Add new episodes here as they are published.</p>
+        </div>
+        <div class="episode-grid">
+          <article class="episode-card">
+            <a href="https://www.youtube.com/watch?v=E9fDREHTagw" target="_blank" rel="noopener noreferrer" aria-label="Watch featured Paulite Pulse episode">
+              <div class="episode-cover"><span class="play-icon">▶</span><small>Paulite Pulse · Video</small><div class="cover-word">THE<br>WEEKLY<br>PULSE.</div></div>
+            </a>
+            <div class="episode-body"><div class="week">Featured episode</div><h3>Paulite Pulse — Weekly Bulletin</h3><p>The featured school bulletin. Watch the full video on YouTube.</p><a href="https://www.youtube.com/watch?v=E9fDREHTagw" target="_blank" rel="noopener noreferrer">Watch episode ↗</a></div>
+          </article>
+          <article class="episode-card">
+            <div class="episode-cover red"><small>Next edition</small><div class="cover-word">WHAT’S<br>HAPPENING?</div></div>
+            <div class="episode-body"><div class="week">Coming soon</div><h3>Next week on Paulite Pulse</h3><p>Update this card with the title, date, and YouTube link when the next bulletin is published.</p><a href="#updates">See school updates ↓</a></div>
+          </article>
+          <article class="episode-card">
+            <div class="episode-cover cream"><small>From our campus</small><div class="cover-word">MOMENTS.<br>MEMORIES.</div></div>
+            <div class="episode-body"><div class="week">Archive placeholder</div><h3>More school stories</h3><p>Use this space for a past bulletin, special feature, or school event recap.</p><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Browse YouTube ↗</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="updates" id="updates">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow"><span class="dot"></span> Around campus</div><h2>On the school radar.</h2></div>
+          <p>A home for timely reminders and highlights. Replace these sample notes with verified school announcements.</p>
+        </div>
+        <div class="updates-grid">
+          <article class="update-card"><div class="update-icon">↗</div><div><h3>School announcements</h3><p>Add important notices, schedule changes, and reminders here. Confirm details with the school before publishing.</p></div></article>
+          <article class="update-card"><div class="update-icon">✦</div><div><h3>Celebrating achievements</h3><p>Highlight student accomplishments, team milestones, competitions, and creative work from the school community.</p></div></article>
+          <article class="update-card"><div class="update-icon">▦</div><div><h3>Events and activities</h3><p>Share upcoming assemblies, club activities, cultural events, and other dates students should know about.</p></div></article>
+          <article class="update-card"><div class="update-icon">▶</div><div><h3>New bulletin alert</h3><p>When a new Paulite Pulse episode goes live, add its YouTube link to the featured section and episode archive.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="community">
+      <div class="wrap">
+        <div class="community-panel">
+          <div><h2>Every week.<br>One pulse.</h2><p>Stay connected to the stories, people, and moments that shape our school community.</p></div>
+          <a class="btn btn-light" href="https://www.youtube.com/watch?v=E9fDREHTagw" target="_blank" rel="noopener noreferrer">Visit the bulletin on YouTube ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>
+        <a class="brand" href="#home"><span class="brand-mark">P.</span><span>paulite pulse<small>the school bulletin</small></span></a>
+        <div class="footer-copy" style="margin-top:14px">© <span id="year"></span> Paulite Pulse. School stories, shared weekly.</div>
+      </div>
+      <div class="footer-links"><a href="#latest">Latest bulletin</a><a href="#episodes">Episodes</a><a href="#updates">School updates</a><a href="https://www.youtube.com/watch?v=E9fDREHTagw" target="_blank" rel="noopener noreferrer">YouTube ↗</a></div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('menu-open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '×' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('menu-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.textContent = '☰';
+    }));
+  </script>
+  <style>
+    @media (max-width: 850px) {
+      .nav { position: relative; }
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: calc(100% - 1px); left: 0; right: 0; padding: 18px; background: white; border: 1px solid var(--line); border-radius: 0 0 18px 18px; box-shadow: var(--shadow); align-items: stretch; flex-direction: column; gap: 15px; }
+      .nav-links.menu-open { display: flex; }
+      .nav-links a:not(.nav-cta) { display: block; }
+      .nav-cta { text-align: center; }
+    }
+  </style>
+</body>
+</html>
